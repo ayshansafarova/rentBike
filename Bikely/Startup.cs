@@ -13,12 +13,12 @@ namespace Bikely
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-			createRoles();
+			createUserRoles();
 		}
 
 
 		// In this method I will create default User roles and Admin user for login
-		private void createRoles()
+		private void createUserRoles()
 		{
 			ApplicationDbContext context = new ApplicationDbContext();
 
