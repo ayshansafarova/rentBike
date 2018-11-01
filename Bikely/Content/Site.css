@@ -9,3 +9,7 @@
 header .m-stack{
     width: unset;
 }
+
+#single-layout .btn.dropdown-toggle.btn-default {
+    border: unset !important;
+}

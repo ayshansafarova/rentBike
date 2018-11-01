@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Index";
 }
@@ -14,6 +15,23 @@
 }
 else
 {
-    <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
+    <div data-notify="container" class="alert alert-success m-alert animated tada"
+         role="alert" data-notify-position="top-center" style="display: inline-block;
+    margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000;
+    top: 30px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss"></button>
+        <span data-notify="title"></span>
+        <span data-notify="message">
+            Təbriklər!
+            <strong class="m--font-focus">@User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1)).ToLower()</strong>
+            Qeydiyyat tamamlandı :)
+        </span>
+    </div>
 }
+
+<script>
+    setTimeout(function () {
+        $('.alert.alert-success').hide();
+    }, 5000);
+</script>
 

@@ -1,11 +1,13 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using Bikely.Models
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "m-topbar__nav m-nav m-nav--inline" }))
     {
         @Html.AntiForgeryToken()
 
-        <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true" aria-expanded="true">
+        <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true" aria-expanded="true">
             <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
                 <span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
                 <span class="m-nav__link-icon">
@@ -13,7 +15,7 @@
                 </span>
             </a>
             <div class="m-dropdown__wrapper">
-                <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                <span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
                 <div class="m-dropdown__inner">
                     <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/action-bg.jpg); background-size: cover;">
                         <span class="m-dropdown__header-title">
@@ -218,63 +220,6 @@
                 </div>
             </div>
         </li>
-        <li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click" aria-expanded="true">
-            <a href="#" class="m-nav__link m-dropdown__toggle">
-                <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
-                <span class="m-nav__link-icon">
-                    <i class="flaticon-share"></i>
-                </span>
-            </a>
-            <div class="m-dropdown__wrapper">
-                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 29.5px;"></span>
-                <div class="m-dropdown__inner">
-                    <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/action-bg.jpg); background-size: cover;">
-                        <span class="m-dropdown__header-title">
-                            Quick Actions
-                        </span>
-                        <span class="m-dropdown__header-subtitle">
-                            Shortcuts
-                        </span>
-                    </div>
-                    <div class="m-dropdown__body m-dropdown__body--paddingless">
-                        <div class="m-dropdown__content">
-                            <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
-                                <div class="m-nav-grid m-nav-grid--skin-light">
-                                    <div class="m-nav-grid__row">
-                                        <a href="#" class="m-nav-grid__item">
-                                            <i class="m-nav-grid__icon flaticon-file"></i>
-                                            <span class="m-nav-grid__text">
-                                                Generate Report
-                                            </span>
-                                        </a>
-                                        <a href="#" class="m-nav-grid__item">
-                                            <i class="m-nav-grid__icon flaticon-time"></i>
-                                            <span class="m-nav-grid__text">
-                                                Add New Event
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="m-nav-grid__row">
-                                        <a href="#" class="m-nav-grid__item">
-                                            <i class="m-nav-grid__icon flaticon-folder"></i>
-                                            <span class="m-nav-grid__text">
-                                                Create New Task
-                                            </span>
-                                        </a>
-                                        <a href="#" class="m-nav-grid__item">
-                                            <i class="m-nav-grid__icon flaticon-clipboard"></i>
-                                            <span class="m-nav-grid__text">
-                                                Completed Tasks
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
         <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click" aria-expanded="true">
             <a href="#" class="m-nav__link m-dropdown__toggle">
                 <span class="m-nav__link-icon">
@@ -291,10 +236,18 @@
                             </div>
                             <div class="m-card-user__details">
                                 <span class="m-card-user__name m--font-weight-500">
-                                    @User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1))
+                                    @{ 
+                                        var u = User.Identity;
+                                        var uId = u.GetUserId();
+                                        var uName = u.GetUserName();
+                                        ApplicationDbContext context = new ApplicationDbContext();
+                                        var uManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                                        var uEmail = uManager.GetEmail(uId);
+                                    }
+                                        @uName.First().ToString().ToUpper()@String.Join("", uName.Skip(1)).ToLower()
                                 </span>
                                 <a href="" class="m-card-user__email m--font-weight-300 m-link">
-                                    aysensafarova@gmail.com
+                                    @uEmail.ToString().ToLower()
                                 </a>
                             </div>
                         </div>
@@ -315,11 +268,6 @@
                                                 <span class="m-nav__link-text">
                                                     Əsas səhifəm
                                                 </span>
-                                                <span class="m-nav__link-badge">
-                                                    <span class="m-badge m-badge--success">
-                                                        2
-                                                    </span>
-                                                </span>
                                             </span>
                                         </span>
                                     </a>
@@ -327,8 +275,13 @@
                                 <li class="m-nav__item">
                                     <a href="header/profile.html" class="m-nav__link">
                                         <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                        <span class="m-nav__link-text">
+                                        <span class="m-nav__link-title">
                                             Bildirişlərim
+                                        </span>
+                                        <span class="m-nav__link-badge">
+                                            <span class="m-badge m-badge--focus">
+                                                18
+                                            </span>
                                         </span>
                                     </a>
                                 </li>
@@ -344,9 +297,6 @@
                 </div>
             </div>
         </li>
-            @*<li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>*@
     }
 }
 else
@@ -365,9 +315,5 @@ else
             </span>
         </a>
     </li>
-
-
-    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
-
+    
 }
