@@ -14,8 +14,9 @@ namespace Bikely.Controllers
 	[Authorize]
 	public class UsersController : Controller
     {
-		// GET: Users
-		public Boolean isAdminUser()
+
+        // GET: Users
+        public Boolean isAdminUser()
 		{
 			if (User.Identity.IsAuthenticated)
 			{

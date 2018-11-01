@@ -1,58 +1,79 @@
 ﻿@model Bikely.Models.RegisterViewModel
+
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_SingleLayout.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="m-grid m-grid--hor m-grid--root m-page">
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-3 m-login--signup" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-2.jpg);">
+        <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
+            <div class="m-login__container">
+                <div class="m-login__forget-password m--hide">
+                    <div class="m-login__head">
+                        <h3 class="m-login__title">
+                            Forgotten Password ?
+                        </h3>
+                        <div class="m-login__desc">
+                            Enter your email to reset your password:
+                        </div>
+                    </div>
+                    <form class="m-login__form m-form" action="">
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
+                        </div>
+                        <div class="m-login__form-action">
+                            <button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+                                Request
+                            </button>
+                            &nbsp;&nbsp;
+                            <button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="m-login__signup">
+                    <div class="m-login__head">
+                        <h3 class="m-login__title">
+                            Qeydiyyat
+                        </h3>
+                    </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "m-login__form m-form", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "alert-danger" })
+                        <div class="form-group m-form__group">
+                            @Html.TextBoxFor(m => m.Email, new {id = "m_inputmask_9", @class = "form-control m-input",
+                            type = "text", placeholder = "Email adres", autocomplete = "off"})
+                        </div>
+                        <div class="form-group m-form__group">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control m-input",
+                            type = "text", placeholder = "Istifadəçi adı"})
+                        </div>
+                        <div class="form-group m-form__group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control m-input", placeholder = "Parol" })
+                        </div>
+                        <div class="form-group m-form__group">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control m-input", placeholder = "Parolu təkrarlayın" })
+                        </div>
+                        <div class="form-group m-form__group">
+
+                            @*@Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "")*@
+
+                            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "", new { @class = "form-control m-bootstrap-select m_selectpicker", title = "Kirayə verirsiniz yoxsa götürürsünüz?", tabindex = "-98" })
+
+                        </div>
+                        <div class="m-login__form-action form-group">
+                            <input id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" value="Təsdiqlə" type="submit" />
+
+                            @Html.ActionLink("Ləğv et", "Index", "Home", null, new { @class = "btn btn-outline-focus m-btn m-btn--pill m-btn--custom m-login__btn" })
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("user Role", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @*@Html.DropDownList("Name")*@
-            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
