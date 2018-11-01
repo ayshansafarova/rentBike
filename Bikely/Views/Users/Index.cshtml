@@ -23,15 +23,16 @@ else
         <span data-notify="title"></span>
         <span data-notify="message">
             Təbriklər!
-            <strong class="m--font-focus">@User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1)).ToLower()</strong>
+            <strong class="m--font-boldest m--font-primary"> @User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1)).ToLower() </strong>
             Qeydiyyat tamamlandı :)
         </span>
+        <embed id="soundLogin" src="" autostart="true" width="0" height="0" enablejavascript ="true" />
     </div>
 }
 
 <script>
     setTimeout(function () {
         $('.alert.alert-success').hide();
-    }, 5000);
+    }, 8000);
 </script>
 
