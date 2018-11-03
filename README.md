@@ -65,7 +65,7 @@ Accept or Reject - it is optional requirement for owners.
 - C# as programming language **back-end**
 - ASP.NET MVC as the framework for implementing the project 
 - Entity Framework Core to access the database
-- Javascript, Jquery as programming language for **front-end**
+- Javascript, Jquery as programming languages for **front-end**
 - HTML, CSS, Bootstrap(Framework) - for web design
 - Unit tests with .NET
 - GitHub as source control system
