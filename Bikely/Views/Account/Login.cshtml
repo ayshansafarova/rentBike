@@ -1,4 +1,5 @@
-﻿
+﻿@using Bikely.Models
+@model LoginViewModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_SingleLayout.cshtml";
@@ -19,17 +20,22 @@
                             Giriş
                         </h3>
                     </div>
-                    <form class="m-login__form m-form" action="">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-login__form m-form", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input" type="text" placeholder="İstifadəçi adınız" name="username" autocomplete="off">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control m-input", type = "text", placeholder = "İstifadəçi adınız", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "alert-danger" })
                         </div>
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Parolunuz" name="password">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Parolunuz" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "alert-danger" })
                         </div>
                         <div class="row m-login__form-sub">
                             <div class="col m--align-left m-login__form-left">
                                 <label class="m-checkbox  m-checkbox--light">
-                                    <input type="checkbox" name="remember">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
                                     Məni yadda saxla
                                     <span></span>
                                 </label>
@@ -41,11 +47,9 @@
                             </div>
                         </div>
                         <div class="m-login__form-action">
-                            <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
-                                Daxil ol
-                            </button>
+                            <input type="submit" value="Daxil ol" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" />
                         </div>
-                    </form>
+                    }
                 </div>
                 <div class="m-login__forget-password m--hide">
                     <div class="m-login__head">
