@@ -243,6 +243,13 @@
     <Content Include="assets\app\media\img\products\product7.jpg" />
     <Content Include="assets\app\media\img\products\product8.jpg" />
     <Content Include="assets\app\media\img\products\product9.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-bg.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-blue.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-sport.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-sport2.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-spring.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-summer.jpg" />
+    <Content Include="assets\app\media\img\slider\bike-winter.png" />
     <Content Include="assets\app\media\img\users\100_1.jpg" />
     <Content Include="assets\app\media\img\users\100_10.jpg" />
     <Content Include="assets\app\media\img\users\100_11.jpg" />
@@ -348,10 +355,8 @@
     <Content Include="assets\demo\default\custom\components\utils\session-timeout.js" />
     <Content Include="assets\demo\default\custom\header\actions.js" />
     <Content Include="assets\demo\default\media\img\logo\favicon.ico" />
-    <Content Include="assets\demo\default\media\img\logo\logo.png" />
     <Content Include="assets\demo\default\media\img\logo\logo_compact.png" />
-    <Content Include="assets\demo\default\media\img\logo\logo_default_dark.png" />
-    <Content Include="assets\demo\default\media\img\logo\logo_default_light.png" />
+    <Content Include="assets\demo\default\media\img\logo\main-logo.png" />
     <Content Include="assets\demo\default\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\demo\default\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
@@ -376,6 +381,7 @@
     <Content Include="assets\vendors\custom\jquery-ui\jquery-ui.bundle.js" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.css" />
     <Content Include="assets\vendors\custom\jqvmap\jqvmap.bundle.js" />
+    <Content Include="bike.ico" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -416,6 +422,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -460,6 +467,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\sound\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -479,7 +487,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>main-bike.ico</ApplicationIcon>
+    <ApplicationIcon>bike.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
