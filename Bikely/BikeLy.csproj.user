@@ -17,7 +17,10 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <WebStackScaffolding_DbContextTypeFullName>Bikely.Models.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
+<<<<<<< HEAD
     <ProjectView>ShowAllFiles</ProjectView>
+=======
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

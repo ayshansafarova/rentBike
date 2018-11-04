@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿@using Bikely.Models
 @model LoginViewModel
+=======
+﻿
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_SingleLayout.cshtml";
@@ -20,6 +24,7 @@
                             Giriş
                         </h3>
                     </div>
+<<<<<<< HEAD
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-login__form m-form", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
@@ -31,11 +36,23 @@
                         <div class="form-group m-form__group">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Parolunuz" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+=======
+                    <form class="m-login__form m-form" action="">
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input" type="text" placeholder="İstifadəçi adınız" name="username" autocomplete="off">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Parolunuz" name="password">
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
                         </div>
                         <div class="row m-login__form-sub">
                             <div class="col m--align-left m-login__form-left">
                                 <label class="m-checkbox  m-checkbox--light">
+<<<<<<< HEAD
                                     @Html.CheckBoxFor(m => m.RememberMe, new { name="remember" })
+=======
+                                    <input type="checkbox" name="remember">
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
                                     Məni yadda saxla
                                     <span></span>
                                 </label>
@@ -47,9 +64,17 @@
                             </div>
                         </div>
                         <div class="m-login__form-action">
+<<<<<<< HEAD
                             <input type="submit" value="Daxil ol" id = "m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" />
                         </div>
                     }
+=======
+                            <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+                                Daxil ol
+                            </button>
+                        </div>
+                    </form>
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
                 </div>
                 <div class="m-login__forget-password m--hide">
                     <div class="m-login__head">

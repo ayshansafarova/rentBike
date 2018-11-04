@@ -142,7 +142,10 @@ namespace Bikely.Controllers
         {
 			ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
 											.ToList(), "Name", "Name");
+<<<<<<< HEAD
             ViewBag.Condition = "newRegistered";
+=======
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
             return View();
         }
 

@@ -5,6 +5,7 @@
 }
 
 
+<<<<<<< HEAD
 @if (ViewBag.Condition == "newRegistered" && ViewBag.displayMenu != "Yes")
 {
     <div data-notify="container" class="alert alert-success m-alert animated tada"
@@ -22,6 +23,10 @@
     </div>
 }
 else if (ViewBag.displayMenu == "Yes")
+=======
+
+@if (ViewBag.displayMenu == "Yes")
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
 {
     <h1>Welcome Admin. Now you can create user Role.</h1>
     <h3>
@@ -30,6 +35,7 @@ else if (ViewBag.displayMenu == "Yes")
 }
 else
 {
+<<<<<<< HEAD
     <div data-notify="container" class="alert alert-brand m-alert animated tada m-alert--square m-alert--air" role="alert" data-notify-position="top-center" style="display: inline-block;
         margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000;
         top: 30px; left: 0px; right: 0px; animation-iteration-count: 1;">
@@ -39,6 +45,20 @@ else
             <strong class="m--font-boldest m--font-primary"> @User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1)).ToLower() </strong>
             Gününüz xoş keçsin :)
         </span>
+=======
+    <div data-notify="container" class="alert alert-success m-alert animated tada"
+         role="alert" data-notify-position="top-center" style="display: inline-block;
+    margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000;
+    top: 30px; left: 0px; right: 0px; animation-iteration-count: 1;">
+        <button type="button" aria-hidden="true" class="close" data-notify="dismiss"></button>
+        <span data-notify="title"></span>
+        <span data-notify="message">
+            Təbriklər!
+            <strong class="m--font-boldest m--font-primary"> @User.Identity.GetUserName().First().ToString().ToUpper()@String.Join("", User.Identity.GetUserName().Skip(1)).ToLower() </strong>
+            Qeydiyyat tamamlandı :)
+        </span>
+        <embed id="soundLogin" src="" autostart="true" width="0" height="0" enablejavascript ="true" />
+>>>>>>> f0140cd6391946a81e90811cafae17aa3eef21cc
     </div>
 }
 
