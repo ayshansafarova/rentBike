@@ -23,20 +23,20 @@
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-login__form m-form", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "m-alert m-alert--outline" })
+                        @Html.ValidationSummary(true, "", new { @class = "alert-danger m-alert--outline" })
                         <div class="form-group m-form__group">
                             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control m-input", type = "text", placeholder = "İstifadəçi adınız", autocomplete = "off" })
-                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                         </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "m-alert m-alert--outline" })
                         <div class="form-group m-form__group">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Parolunuz" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "m-alert m-alert--outline" })
                         <div class="row m-login__form-sub">
                             <div class="col m--align-left m-login__form-left">
                                 <label class="m-checkbox  m-checkbox--light">
                                     @Html.CheckBoxFor(m => m.RememberMe)
-                                    Məni yadda saxla
+                                    @Html.LabelFor(m => m.RememberMe)
                                     <span></span>
                                 </label>
                             </div>
