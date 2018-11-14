@@ -180,8 +180,18 @@
     <Compile Include="Migrations\201810031122479_initial.Designer.cs">
       <DependentUpon>201810031122479_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811141821148_addBikeCategoryclasses.cs" />
+    <Compile Include="Migrations\201811141821148_addBikeCategoryclasses.Designer.cs">
+      <DependentUpon>201811141821148_addBikeCategoryclasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811141903546_addBikeCategoryclasses1.cs" />
+    <Compile Include="Migrations\201811141903546_addBikeCategoryclasses1.Designer.cs">
+      <DependentUpon>201811141903546_addBikeCategoryclasses1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Bike.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -472,6 +482,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810031122479_initial.resx">
       <DependentUpon>201810031122479_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811141821148_addBikeCategoryclasses.resx">
+      <DependentUpon>201811141821148_addBikeCategoryclasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811141903546_addBikeCategoryclasses1.resx">
+      <DependentUpon>201811141903546_addBikeCategoryclasses1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
