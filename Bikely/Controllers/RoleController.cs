@@ -12,6 +12,8 @@ namespace Bikely.Controllers
 	[Authorize]
 	public class RoleController : Controller
     {
+        //I authorized [Authorize(User.isInRole("Admin"))] - this gave exception
+        //NullReferenceObject - in (var item in Model) - iEnumarable<IdneitityRole>?
 		ApplicationDbContext context;
 
 		public RoleController()
@@ -19,96 +21,41 @@ namespace Bikely.Controllers
 			context = new ApplicationDbContext();
 		}
 
-		/// <summary>
-		/// Get All Roles
-		/// </summary>
-		/// <returns></returns>
 		public ActionResult Index()
 		{
 
-			if (User.Identity.IsAuthenticated)
+			if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 			{
-
-
-				if (!isAdminUser())
-				{
-					return RedirectToAction("Index", "Home");
-				}
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-
-			var Roles = context.Roles.ToList();
-			return View(Roles);
-
+                var Roles = context.Roles.ToList();
+                return View();
+            }
+			return RedirectToAction("Index", "Home");
 		}
-		public Boolean isAdminUser()
-		{
-			if (User.Identity.IsAuthenticated)
-			{
-				var user = User.Identity;
-				var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-				var s = UserManager.GetRoles(user.GetUserId());
-				if (s[0].ToString() == "Admin")
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			return false;
-		}
-		/// <summary>
-		/// Create  a New role
-		/// </summary>
-		/// <returns></returns>
+
+        //
+        // GET:
 		public ActionResult Create()
 		{
-			if (User.Identity.IsAuthenticated)
+			if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 			{
-
-
-				if (!isAdminUser())
-				{
-					return RedirectToAction("Index", "Home");
-				}
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-
-			var Role = new IdentityRole();
-			return View(Role);
+                var Role = new IdentityRole();
+                return View();
+            }
+			return RedirectToAction("Index", "Home");
 		}
 
-		/// <summary>
-		/// Create a New Role
-		/// </summary>
-		/// <param name="Role"></param>
-		/// <returns></returns>
+        //
+        // POST:
 		[HttpPost]
 		public ActionResult Create(IdentityRole Role)
 		{
-			if (User.Identity.IsAuthenticated)
-			{
-				if (!isAdminUser())
-				{
-					return RedirectToAction("Index", "Home");
-				}
-			}
-			else
-			{
-				return RedirectToAction("Index", "Home");
-			}
-
-			context.Roles.Add(Role);
-			context.SaveChanges();
-			return RedirectToAction("Index");
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                context.Roles.Add(Role);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index", "Home");
 		}
 	}
 }

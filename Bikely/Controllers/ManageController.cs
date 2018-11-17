@@ -13,28 +13,29 @@ namespace Bikely.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationSignInManager sManager;
+        private ApplicationUserManager uManager;
 
         public ManageController()
         {
+
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager uM, ApplicationSignInManager sM)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            uManager = uM;
+            sManager = sM;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return sManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set 
             { 
-                _signInManager = value; 
+                sManager = value; 
             }
         }
 
@@ -42,11 +43,11 @@ namespace Bikely.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return uManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                uManager = value;
             }
         }
 
@@ -55,12 +56,12 @@ namespace Bikely.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Parolunuz dəyişilib."
+                : message == ManageMessageId.SetPasswordSuccess ? "Parolunuz qeydiyyata alındı"
+                : message == ManageMessageId.SetTwoFactorSuccess ? "2FA provayderiniz ugurla qeydiyyata alınıb."
+                : message == ManageMessageId.Error ? "Xəta var"
+                : message == ManageMessageId.AddPhoneSuccess ? "Mobil nömrəniz əlavə olunub."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Mobil nömrəniz ləğv olunub."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -70,7 +71,7 @@ namespace Bikely.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                rememberedBrowser = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
         }
@@ -123,7 +124,7 @@ namespace Bikely.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Təhlükəsizlik kodunuz: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -279,8 +280,8 @@ namespace Bikely.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Giriş ləğv olunub."
+                : message == ManageMessageId.Error ? "Nəsə xəta var"
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
@@ -322,10 +323,10 @@ namespace Bikely.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _userManager != null)
+            if (disposing && uManager != null)
             {
-                _userManager.Dispose();
-                _userManager = null;
+                uManager.Dispose();
+                uManager = null;
             }
 
             base.Dispose(disposing);

@@ -27,12 +27,12 @@ namespace Bikely
 
 
 			// At first, I am creating first Admin user type and creating a default Admin user 
-			if (!roleManager.RoleExists("Admin"))
-			{
-				var role = new IdentityRole();
-				role.Name = "Admin";
-				roleManager.Create(role);			
-			}
+			//if (!roleManager.RoleExists("Admin"))
+			//{
+			//	var role = new IdentityRole();
+			//	role.Name = "Admin";
+			//	roleManager.Create(role);			
+			//}
 
 			// creating Creating Owner user type 
 			if (!roleManager.RoleExists("Owner"))

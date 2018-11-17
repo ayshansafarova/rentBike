@@ -5,7 +5,7 @@
 }
 
 
-@if (ViewBag.Condition == "registered")
+@if (ViewBag.Condition == "registered" & ViewBag.Role == "Not Admin")
 {
     <div data-notify="container" class="alert alert-success m-alert animated tada alert-dismissible"
          role="alert" data-notify-position="top-center" style="display: inline-block;
@@ -21,7 +21,7 @@
         <embed id="soundLogin" src="" autostart="true" width="0" height="0" enablejavascript="true" />
     </div>
 }
-else if (ViewBag.displayMenu == "Yes")
+else if (ViewBag.Role == "Admin")
 {
     <div data-notify="container" class="alert alert-success m-alert animated tadaalert-dismissible"
          role="alert" data-notify-position="top-center" style="display: inline-block;

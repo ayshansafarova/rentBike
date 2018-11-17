@@ -15,29 +15,30 @@ namespace Bikely.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-		ApplicationDbContext context;
+        private ApplicationSignInManager sManager;
+        private ApplicationUserManager uManager;
+		public ApplicationDbContext context;
+
 		public AccountController()
         {
 			context = new ApplicationDbContext();
 		}
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager uM, ApplicationSignInManager sM )
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            uManager = uM;
+            sManager = sM;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return sManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set 
             { 
-                _signInManager = value; 
+                sManager = value; 
             }
         }
 
@@ -45,11 +46,11 @@ namespace Bikely.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return uManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                uManager = value;
             }
         }
 
@@ -87,7 +88,7 @@ namespace Bikely.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Giriş cəhdində xəta");
                     return View(model);
             }
         }
@@ -302,7 +303,7 @@ namespace Bikely.Controllers
             }
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View(new SendCodeViewModel { Providers = factorOptions, calledUrl = returnUrl, RememberMe = rememberMe });
         }
 
         //
@@ -322,7 +323,7 @@ namespace Bikely.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.calledUrl, RememberMe = model.RememberMe });
         }
 
         //
@@ -415,16 +416,16 @@ namespace Bikely.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (uManager != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    uManager.Dispose();
+                    uManager = null;
                 }
 
-                if (_signInManager != null)
+                if (sManager != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    sManager.Dispose();
+                    sManager = null;
                 }
             }
 

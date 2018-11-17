@@ -12,7 +12,7 @@ namespace Bikely.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Bikely.Models.ApplicationDbContext context)
