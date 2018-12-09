@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Bikely.Models.UsersViewModel>
+
+<h3>İstifadəçilərin siyahısı</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>İstifadəçi adı</th>
+            <th>Rol</th>
+            <th>Email adres</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Nömrə təsdiqlənib?</th>
+                <th>Delete</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+        {
+        <tr>
+            <td>@user.userName</td>
+
+            @if (user.roleName == "Owner")
+            {
+                <td>Sahibkar</td>
+
+            }
+            else if (user.roleName == "Renter")
+            {
+                <td>Kirayəçi</td>
+            }
+
+            <td>@user.userEmail</td>
+
+            @if (!user.phoneNumConfirmed && user.showHiddenLinks)
+            {
+                <td>Xeyir</td>
+            }
+            else if (user.showHiddenLinks)
+            {
+                <td>Bəli</td>
+            }
+            @if (user.showHiddenLinks)
+            {
+                //delete links
+                <td>asdhfsdhfj</td>
+            }
+
+        </tr>
+        }
+    </tbody>
+</table>

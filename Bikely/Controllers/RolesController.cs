@@ -10,13 +10,13 @@ using Microsoft.AspNet.Identity;
 namespace Bikely.Controllers
 {
 	[Authorize]
-	public class RoleController : Controller
+	public class RolesController : Controller
     {
         //I authorized [Authorize(User.isInRole("Admin"))] - this gave exception
         //NullReferenceObject - in (var item in Model) - iEnumarable<IdneitityRole>?
 		ApplicationDbContext context;
 
-		public RoleController()
+		public RolesController()
 		{
 			context = new ApplicationDbContext();
 		}
@@ -26,8 +26,15 @@ namespace Bikely.Controllers
 
 			if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 			{
-                var Roles = context.Roles.ToList();
-                return View();
+                try
+                {
+                    var Roles = context.Roles.ToList();
+                    return View();
+                }
+                catch(NullReferenceException e)
+                {
+                    return View("~/Views/Shared/Error.cshtml");
+                }
             }
 			return RedirectToAction("Index", "Home");
 		}

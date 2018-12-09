@@ -172,7 +172,7 @@
     <Compile Include="Controllers\BikesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +195,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\BikeFormViewModel.cs" />
@@ -359,11 +360,13 @@
     <Content Include="assets\demo\default\custom\components\utils\idle-timer.js" />
     <Content Include="assets\demo\default\custom\components\utils\session-timeout.js" />
     <Content Include="assets\demo\default\custom\header\actions.js" />
+    <Content Include="assets\demo\default\media\img\logo\baku.png" />
     <Content Include="assets\demo\default\media\img\logo\favicon.ico" />
     <Content Include="assets\demo\default\media\img\logo\logo.png" />
     <Content Include="assets\demo\default\media\img\logo\logo_compact.png" />
     <Content Include="assets\demo\default\media\img\logo\logo_default_dark.png" />
     <Content Include="assets\demo\default\media\img\logo\logo_default_light.png" />
+    <Content Include="assets\demo\default\media\img\logo\rsz_1baku.png" />
     <Content Include="assets\demo\default\media\img\misc\notification_bg.jpg" />
     <Content Include="assets\demo\default\media\img\misc\quick_actions_bg.jpg" />
     <Content Include="assets\demo\default\media\img\misc\user_profile_bg.jpg" />
@@ -461,13 +464,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_SingleLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Bikes\Index.cshtml" />
+    <Content Include="Views\Users\_UserListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

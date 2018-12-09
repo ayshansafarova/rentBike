@@ -19,7 +19,7 @@ namespace Bikely.Controllers
         private ApplicationUserManager uManager;
 		public ApplicationDbContext context;
 
-		public AccountController()
+        public AccountController()
         {
 			context = new ApplicationDbContext();
 		}
@@ -70,6 +70,7 @@ namespace Bikely.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+        
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -81,6 +82,7 @@ namespace Bikely.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    ViewBag.LoggedCount = "1";
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -91,6 +93,8 @@ namespace Bikely.Controllers
                     ModelState.AddModelError("", "Giriş cəhdində xəta");
                     return View(model);
             }
+
+            
         }
 
         //
@@ -133,6 +137,7 @@ namespace Bikely.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
+                    
             }
         }
 
@@ -401,6 +406,8 @@ namespace Bikely.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //after retesting detect
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 

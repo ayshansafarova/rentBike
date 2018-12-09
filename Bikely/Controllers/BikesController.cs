@@ -26,6 +26,7 @@ namespace Bikely.Controllers
         }
 
         // GET: Bikes
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (User.IsInRole("Owner"))
@@ -35,8 +36,11 @@ namespace Bikely.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //public ActionResult  { get; set; }
+        //public ActionResult New()
+        //{
+
+        //}
 
 
-    }
+}
 }

@@ -1,5 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
-@using Microsoft.AspNet.Identity.EntityFramework
+﻿@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
 @using Bikely.Models
 @if (Request.IsAuthenticated)
 {
@@ -236,18 +236,22 @@
                             </div>
                             <div class="m-card-user__details">
                                 <span class="m-card-user__name m--font-weight-500">
-                                    @{ 
+                                    @{
                                         var u = User.Identity;
                                         var uId = u.GetUserId();
                                         var uName = u.GetUserName();
                                         ApplicationDbContext context = new ApplicationDbContext();
                                         var uManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                                        var uEmail = uManager.GetEmail(uId);
+                                        var uRole = uManager.GetRoles(uId);
+                                        if (User.IsInRole("Admin"))
+                                        {
+                                            uName = "Admin";
+                                        }
                                     }
-                                        @uName.First().ToString().ToUpper()@String.Join("", uName.Skip(1)).ToLower()
+                                    @uName.First().ToString().ToUpper()@String.Join("", uName.Skip(1)).ToLower()
                                 </span>
                                 <a href="" class="m-card-user__email m--font-weight-300 m-link">
-                                    @uEmail.ToString().ToLower()
+                                    @String.Join(",", uRole).ToString();
                                 </a>
                             </div>
                         </div>
@@ -315,5 +319,5 @@ else
             </span>
         </a>
     </li>
-    
+
 }

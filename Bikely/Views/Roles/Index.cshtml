@@ -12,15 +12,16 @@
 
     <tr>
         <td>
-            <table id="tbrole" style="width:100%; border:dotted 1px; background-color:gainsboro; padding-left:10px;">
-
+            <table style="width:100%; border: 1px solid black; background-color:darkred; padding-left:10px;">
+                
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td style="width:100%; border:dotted 1px;">
-                            @item.Name
+                        <td style="width:100%; border: 1px solid black;">
+                            @item.Name;
                         </td>
-                    </tr>}
+                    </tr>
+                }
             </table>
         </td>
         <td align="right" style="color:#FFFFFF;padding-right:10px;">
