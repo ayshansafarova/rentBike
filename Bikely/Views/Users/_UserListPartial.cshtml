@@ -11,8 +11,9 @@
             @if (User.IsInRole("Admin"))
             {
                 <th>Nömrə təsdiqlənib?</th>
-                <th>Delete</th>
+                <th>Sil</th>
             }
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -33,18 +34,19 @@
 
             <td>@user.userEmail</td>
 
-            @if (!user.phoneNumConfirmed && user.showHiddenLinks)
+            @if (!user.phoneNumConfirmed && user.showSomeParts)
             {
                 <td>Xeyir</td>
             }
-            else if (user.showHiddenLinks)
+            else if (user.showSomeParts)
             {
                 <td>Bəli</td>
             }
-            @if (user.showHiddenLinks)
+            @if (user.showSomeParts)
             {
-                //delete links
-                <td>asdhfsdhfj</td>
+                <td>
+                    @Html.ActionLink("Sil", "Delete", new { userId = user.userId})
+                </td>
             }
 
         </tr>

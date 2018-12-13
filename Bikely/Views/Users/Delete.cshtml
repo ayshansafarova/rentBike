@@ -1,0 +1,15 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityUser
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Silmək istədiyinə əminsən, Admin?</h2>
+
+@using (Html.BeginForm("DeleteConfirmed","Users" , FormMethod.Post, new { id = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" class="" value="Bəli"/>
+} 
+
+@Html.ActionLink("Xeyir", "Index", null, new { @class = "", id = "" })

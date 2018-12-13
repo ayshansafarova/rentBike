@@ -12,7 +12,7 @@ namespace Bikely.Models
         public string userName { get; set; }
         public string userEmail { get; set; }
         public bool phoneNumConfirmed { get; set; }
-        public bool showHiddenLinks { get; set; } 
-        //this makes admin hides something - ? admin hides : owner or renter hides
+        public bool showSomeParts { get; set; } 
+        //this makes admin shows only something - ? admin shows : owner or renter shows
     }
 }

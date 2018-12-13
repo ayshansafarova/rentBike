@@ -11,8 +11,6 @@ namespace Bikely.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        //[Required]
-        //[Display(Name = "Məkan")]
         //public string Location { get; set; }
 
         public virtual ICollection<Bike> Bikes { get; set; }
@@ -40,5 +38,6 @@ namespace Bikely.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

@@ -16,11 +16,13 @@ namespace Bikely.Controllers
     {
         public int logCounter;
         public ApplicationDbContext context;
+        public UserManager<ApplicationUser> uManager;
 
         public UsersController()
         {
             logCounter = 0;
             context = new ApplicationDbContext();
+            uManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }
 
         public ActionResult Index()
@@ -54,7 +56,7 @@ namespace Bikely.Controllers
                                      userEmail = f.email,
                                      phoneNumConfirmed = f.phone,
                                      roleName = String.Join(",", f.roles),
-                                     showHiddenLinks = true
+                                     showSomeParts = true
                                  });
                     return View(users);
                 }
@@ -82,7 +84,7 @@ namespace Bikely.Controllers
                                      userEmail = f.email,
                                      phoneNumConfirmed = f.phone,
                                      roleName = String.Join(",", f.roles),
-                                     showHiddenLinks = false
+                                     showSomeParts = false
                                  });
                     return View(users);
                 }
@@ -92,5 +94,42 @@ namespace Bikely.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        //
+        //Get:
+        public ActionResult Delete(string userId)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                if(userId == null)
+                {
+                    return View("Error");
+                }
+                var user = uManager.FindById(userId);
+                if(user == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    context.Users.Remove(user);
+                    context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        //
+        //Post:
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(string userId)
+        //{
+        //    var user = context.Users.Find(userId);
+        //    context.Users.Remove(user);
+        //    context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
     }
 }
