@@ -15,8 +15,8 @@ namespace Bikely.Controllers
     public class UsersController : Controller
     {
         public int logCounter;
-        public ApplicationDbContext context;
-        public UserManager<ApplicationUser> uManager;
+        private ApplicationDbContext context;
+        private UserManager<ApplicationUser> uManager;
 
         public UsersController()
         {
@@ -32,6 +32,7 @@ namespace Bikely.Controllers
                 logCounter++;
                 ViewBag.Count = logCounter.ToString();
 
+                //Identity User List with LINQ
                 if (User.IsInRole("Admin"))
                 {
                     ViewBag.Role = "Admin";
@@ -95,7 +96,6 @@ namespace Bikely.Controllers
             }
         }
 
-        //
         //Get:
         public ActionResult Delete(string userId)
         {
@@ -120,16 +120,23 @@ namespace Bikely.Controllers
             return RedirectToAction("Index");
         }
 
-        //
-        //Post:
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(string userId)
-        //{
-        //    var user = context.Users.Find(userId);
-        //    context.Users.Remove(user);
-        //    context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        //Get:
+        public ActionResult Profile(string userId, string roleName)
+        {
+            if(userId == null || roleName == null )
+            {
+                return View("Error");
+            }
+            var user = uManager.FindById(userId);
+            if(userId == null)
+            {
+                return View("Error");
+            }
+
+            //identity user self with ViewData, dont need to fill Model
+            ViewData["Account"] = user;
+            ViewBag.Role = roleName;
+            return View();
+        }
     }
 }

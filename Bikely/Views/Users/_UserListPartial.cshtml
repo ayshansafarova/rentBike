@@ -48,7 +48,9 @@
                     @Html.ActionLink("Sil", "Delete", new { userId = user.userId})
                 </td>
             }
-
+            <td>
+                @Html.ActionLink("Hesaba daxil ol","Profile", new { userid = user.userId, roleName = user.roleName }, new { @class = "" })
+            </td>
         </tr>
         }
     </tbody>

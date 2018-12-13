@@ -1,0 +1,43 @@
+﻿@using Bikely.Models;
+@model IEnumerable<Bikely.Models.UsersViewModel>
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profil</h2>
+
+@{
+    var user = (ApplicationUser)ViewData["Account"];
+}
+
+    <p>@user.UserName</p>
+    <p>@user.Email</p>
+    @{
+        if(user.PhoneNumber == null)
+        {
+            <p>Nömrə qeyd edilməyib</p> 
+        }
+        else
+        {
+            <p>@user.PhoneNumber</p>
+        }
+    }
+    <p>@ViewBag.Role</p>
+
+
+<h2>Bikes</h2>
+
+@{ 
+    foreach(var bike in user.Bikes)
+    {
+        if(bike == null)
+        {
+            <p>Paylaşdığı heç bir elan yoxdur</p>
+        }
+        else
+        {
+            <p>@bike.Description</p>
+        }
+    }
+}

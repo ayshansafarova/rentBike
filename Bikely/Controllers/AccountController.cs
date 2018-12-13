@@ -89,8 +89,10 @@ namespace Bikely.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
+                    return View("Error");
                 default:
-                    ModelState.AddModelError("", "Giriş cəhdində xəta");
+                    ModelState.AddModelError("", "Giriş cəhdi baş tutmadı: Ya bele bir istifadəçi yoxdur, " +
+                        "ya da ki, istifadəçi adını və ya parolu səhv daxil edirsiniz");
                     return View(model);
             }
 
@@ -146,7 +148,7 @@ namespace Bikely.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-			ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+			ViewData["Roles"] = new SelectList(context.Roles.Where(r => !r.Name.Contains("Admin"))
 											.ToList(), "Name", "Name");
             ViewBag.Condition = "registered";
             return View();
@@ -177,8 +179,10 @@ namespace Bikely.Controllers
 					//Ends Here 
 					return RedirectToAction("Index", "Users");
 				}
-				ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+				ViewData["Roles"] = new SelectList(context.Roles.Where(r => !r.Name.Contains("Admin"))
 										  .ToList(), "Name", "Name");
+                ViewBag.UserName = model.UserName;
+                ViewBag.RoleName = model.UserRoles;
 				AddErrors(result);
 			}
 
