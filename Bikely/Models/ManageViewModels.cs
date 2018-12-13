@@ -28,7 +28,7 @@ namespace Bikely.Models
 
     public class SetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(100, ErrorMessage = "{0} uzunlugu ən az {2} olmalıdır.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Yeni parol")]
@@ -42,12 +42,12 @@ namespace Bikely.Models
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [DataType(DataType.Password)]
         [Display(Name = "İndiki parol")]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(100, ErrorMessage = "{0} uzunlugu ən az {2} olmalıdır.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Yeni parol")]
@@ -61,20 +61,20 @@ namespace Bikely.Models
 
     public class AddPhoneNumberViewModel
     {
-        [Required]
-        [Phone]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Phone(ErrorMessage = "Nömrəni düzgün yazın")]
         [Display(Name = "Mobil telefon nömrəsi")]
         public string Number { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Kod")]
         public string Code { get; set; }
 
-        [Required]
-        [Phone]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Phone(ErrorMessage = "Nömrəni düzgün yazın")]
         [Display(Name = "Mobil telefon nömrəsi")]
         public string PhoneNumber { get; set; }
     }

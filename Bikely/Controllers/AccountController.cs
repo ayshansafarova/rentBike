@@ -179,15 +179,14 @@ namespace Bikely.Controllers
 					//Ends Here 
 					return RedirectToAction("Index", "Users");
 				}
-				ViewData["Roles"] = new SelectList(context.Roles.Where(r => !r.Name.Contains("Admin"))
-										  .ToList(), "Name", "Name");
-                ViewBag.UserName = model.UserName;
-                ViewBag.RoleName = model.UserRoles;
+
 				AddErrors(result);
 			}
 
-			// If we got this far, something failed, redisplay form
-			return View(model);
+            ViewData["Roles"] = new SelectList(context.Roles.Where(r => !r.Name.Contains("Admin"))
+                          .ToList(), "Name", "Name");
+            // If we got this far, something failed, redisplay form
+            return View(model);
 		}
 
         //

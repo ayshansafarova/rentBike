@@ -5,7 +5,7 @@ namespace Bikely.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Email adres")]
         public string Email { get; set; }
     }
@@ -25,10 +25,10 @@ namespace Bikely.Models
 
     public class VerifyCodeViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         public string Provider { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Kod")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
@@ -41,19 +41,19 @@ namespace Bikely.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Email adres")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-		[Required]
+		[Required(ErrorMessage = "Boş buraxılmamalıdır")]
 		[Display(Name = "İstifadəçi adı")]
 
 		public string UserName { get; set; }
 
-		[Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [DataType(DataType.Password)]
         [Display(Name = "Parol")]
         public string Password { get; set; }
@@ -64,26 +64,26 @@ namespace Bikely.Models
 
     public class RegisterViewModel
     {
-		[Required]
-		[Display(Name = "Rol")]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Display(Name = "Rol")]
 		public string UserRoles { get; set; }
 
-		[Required]
-		[EmailAddress]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [EmailAddress(ErrorMessage = "Email adresi düzgün şəkildə yazın.")]
 		[Display(Name = "Email adres")]
 		public string Email { get; set; }
 
-		[Required]
-		[Display(Name = "İstifadəçi adı")]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Display(Name = "İstifadəçi adı")]
 		public string UserName { get; set; }
 
-		[Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(100, ErrorMessage = "{0} uzunlugu ən az {2} olmalıdır.", MinimumLength = 6)]
         [Display(Name = "Parol")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Compare("Password", ErrorMessage = "Əvvəl yazılan parolla təsdiqlədiyiniz parol uyğun gəlmir.")]
         [Display(Name = "Təsdiqlənən parol")]
         public string ConfirmPassword { get; set; }
@@ -91,17 +91,18 @@ namespace Bikely.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [EmailAddress]
         [Display(Name = "Email adres")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(100, ErrorMessage = "{0} uzunlugu ən az {2} olmalıdır.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Parol")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [DataType(DataType.Password)]
         [Display(Name = "Təsdiqlənən parol")]
         [Compare("Password", ErrorMessage = "Əvvəl yazılan parolla təsdiqlədiyiniz parol uyğun gəlmir.")]
@@ -112,7 +113,7 @@ namespace Bikely.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [EmailAddress]
         [Display(Name = "Email adres")]
         public string Email { get; set; }

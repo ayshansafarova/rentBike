@@ -18,15 +18,15 @@ namespace Bikely.Models
 
         public int? Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(255)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Kateqoriya")]
         public byte? CategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Günlük qiymət")]
         public int priceDaily { get; set; }
 
