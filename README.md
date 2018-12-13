@@ -1,6 +1,6 @@
 # Work Plan
 ## Introduction
-It is planned to provide bike rental services between people and rental organizations or simple users in the country. It was analysed and designed through 1 month.
+It is planned to provide bike rental services between people and rental organizations or simple users in Baku. It was analysed and designed through 1 month.
 Gant Chart, WBS and requirements list are ready. I am responsible for both backend and frontend sections of web app.
 ## Using Git
 BASIC Git commands are:
