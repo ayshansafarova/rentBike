@@ -5,7 +5,7 @@
 }
 
 
-@if (ViewBag.Condition == "registered" && ViewBag.Role == "Not Admin")
+@if (TempData["condition"] == "registered" && ViewBag.Role == "Not Admin")
 {
     <div data-notify="container" class="alert alert-success m-alert animated tada alert-dismissible"
          role="alert" data-notify-position="top-center" style="display: inline-block;
@@ -26,6 +26,7 @@
 }
 else if (ViewBag.Role == "Admin" && ViewBag.Count == "1")
 {
+    if (TempData["Condition"] != null)  {
     <div data-notify="container" class="alert alert-success m-alert animated tadaalert-dismissible"
          role="alert" data-notify-position="top-center" style="display: inline-block;
     margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000;
@@ -38,11 +39,12 @@ else if (ViewBag.Role == "Admin" && ViewBag.Count == "1")
         </span>
         <embed id="soundLogin" src="" autostart="true" width="0" height="0" enablejavascript="true" />
     </div>
-
+    }
     @Html.Partial("_UserListPartial");
 }
 else if (ViewBag.Count == "1")
 {
+    if (TempData["Condition"] != null) {
     <div data-notify="container" class="m-alert animated tada m-alert--icon alert-dismissible m-alert--air m-alert--square alert alert-brand" role="alert" data-notify-position="top-center" style="display: inline-block;
     margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 10000;
     top: 30px; left: 0px; right: 0px; animation-iteration-count: 1;">
@@ -60,7 +62,7 @@ else if (ViewBag.Count == "1")
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
-
+    }
     @Html.Partial("_UserListPartial");
 }
 

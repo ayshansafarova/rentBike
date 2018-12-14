@@ -82,7 +82,7 @@ namespace Bikely.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    ViewBag.LoggedCount = "1";
+                    TempData["Condition"] = "Logged";
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -176,7 +176,8 @@ namespace Bikely.Controllers
 					// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 					//Assign Role to user Here   
 					await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-					//Ends Here 
+                    //Ends Here 
+                    TempData["Condition"] = "registered";
 					return RedirectToAction("Index", "Users");
 				}
 

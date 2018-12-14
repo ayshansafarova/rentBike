@@ -250,9 +250,21 @@
                                     }
                                     @uName.First().ToString().ToUpper()@String.Join("", uName.Skip(1)).ToLower()
                                 </span>
-                                <a href="" class="m-card-user__email m--font-weight-300 m-link">
-                                    @String.Join(",", uRole).ToString();
-                                </a>
+                                @{
+                                    if (String.Join(",", uRole).ToString() == "Renter")
+                                    {
+                                        <a href="" class="m-card-user__email m--font-weight-300 m-link">
+                                            Kirayəçi
+                                        </a>
+                                    }
+                                    else if (String.Join(",", uRole).ToString() == "Owner")
+                                    {
+                                        <a href="" class="m-card-user__email m--font-weight-300 m-link">
+                                            Sahibkar
+                                        </a>
+                                    }
+
+                                }
                             </div>
                         </div>
                     </div>
