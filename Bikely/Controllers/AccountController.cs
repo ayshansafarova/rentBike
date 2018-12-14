@@ -411,7 +411,7 @@ namespace Bikely.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             //after retesting detect
-            Session.Abandon();
+            //Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 
