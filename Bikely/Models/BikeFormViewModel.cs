@@ -20,6 +20,7 @@ namespace Bikely.Models
 
         [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [StringLength(255)]
+        [Display(Name = "Qısa məlumat")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Boş buraxılmamalıdır")]
@@ -42,15 +43,7 @@ namespace Bikely.Models
 
         [Required(ErrorMessage = "Boş buraxılmamalıdır")]
         [Display(Name = "Foto")]
-        public byte[] Image { get; set; }
-
-        public string Title
-        {
-            get
-            {
-                return Id != 0 ? "Edit Bike" : "New Bike";
-            }
-        }
+        public HttpPostedFileBase BikePhoto { get; set; }
 
         public BikeFormViewModel(Bike bike)
         {
