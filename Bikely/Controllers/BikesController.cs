@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Bikely.Controllers
 {
-    [Authorize(Roles = "Owner")]
+    [Authorize]
     public class BikesController : Controller
     {
         private ApplicationDbContext context;
@@ -26,15 +26,38 @@ namespace Bikely.Controllers
         }
 
         // GET: Bikes
-        [AllowAnonymous]
         public ActionResult Index()
         {
+            var u = User.Identity;
+            var uId = u.GetUserId();
+            var list = context.Bikes.Where(l => l.User.Id == uId);
             if (User.IsInRole("Owner"))
             {
-                return View("Index");
+                return View(list);
             }
             return RedirectToAction("Index", "Home");
         }
+
+        //Get
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Bike bike)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Bikes.Add(bike);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
 
         //public ActionResult New()
         //{
@@ -42,5 +65,5 @@ namespace Bikely.Controllers
         //}
 
 
-}
+    }
 }

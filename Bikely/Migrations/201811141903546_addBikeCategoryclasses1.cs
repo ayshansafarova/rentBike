@@ -7,8 +7,8 @@ namespace Bikely.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.Bikes", "priceWeekly", c => c.Int());
-            AlterColumn("dbo.Bikes", "priceMonthly", c => c.Int());
+            //AlterColumn("dbo.Bikes", "priceWeekly", c => c.Int());
+            //AlterColumn("dbo.Bikes", "priceMonthly", c => c.Int());
         }
         
         public override void Down()

@@ -39,5 +39,6 @@ namespace Bikely.Models
             return new ApplicationDbContext();
         }
 
+        //public System.Data.Entity.DbSet<Bikely.Models.BikeFormViewModel> BikeFormViewModels { get; set; }
     }
 }

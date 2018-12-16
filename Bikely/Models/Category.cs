@@ -9,6 +9,9 @@ namespace Bikely.Models
     public class Category
     {
         public byte Id { get; set; }
+
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Display(Name = "Kateqoriya adı")]
         public string Name { get; set; }
     }
 }

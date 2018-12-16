@@ -20,6 +20,9 @@ namespace Bikely.Models
         public int? priceWeekly { get; set; }
         public int? priceMonthly { get; set; }
 
+        public bool isActive { get; set; }
+        public byte[] Image { get; set; }
+
         public virtual ApplicationUser User { get; set; }
     }
 }

@@ -73,3 +73,5 @@ E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.initial.resources
 E:\Bikely\Bikely\obj\Debug\Bikely.csproj.GenerateResource.cache
 E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.addBikeCategoryclasses.resources
 E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.addBikeCategoryclasses1.resources
+E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.edit.resources
+E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editBikes.resources

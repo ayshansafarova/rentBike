@@ -36,6 +36,14 @@ namespace Bikely.Models
         [Display(Name = "Aylıq qiymət")]
         public int? priceMonthly { get; set; }
 
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Display(Name = "Aktivlik")]
+        public bool isActive { get; set; }
+
+        [Required(ErrorMessage = "Boş buraxılmamalıdır")]
+        [Display(Name = "Foto")]
+        public byte[] Image { get; set; }
+
         public string Title
         {
             get
@@ -52,6 +60,7 @@ namespace Bikely.Models
             priceMonthly = bike.priceMonthly;
             priceWeekly = bike.priceWeekly;
             CategoryId = bike.CategoryId;
+            isActive = bike.isActive;
         }
         
 

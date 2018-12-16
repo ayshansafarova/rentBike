@@ -14,7 +14,7 @@ namespace Bikely.Tests
         public WebDriverWait waiting;
         public ITakesScreenshot screenshotDriver;
 
-        //test scenario 1 - login
+        //test case 1 - login
         [TestMethod]
         public void UserLogin()
         {
@@ -42,7 +42,7 @@ namespace Bikely.Tests
             }
         }
         
-        //test scenario 2 - Registration
+        //test case 2 - Registration
         [TestMethod]
         public void UserRegister()
         {
@@ -53,10 +53,10 @@ namespace Bikely.Tests
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl(url);
                 driver.Manage().Window.Maximize();
-                driver.FindElementById("m_inputmask_9").SendKeys("adele@mail.ru");
-                driver.FindElementById("UserName").SendKeys("adele");
-                driver.FindElementById("Password").SendKeys("@Adel1992");
-                driver.FindElementById("ConfirmPassword").SendKeys("@Adel1992");
+                driver.FindElementById("m_inputmask_9").SendKeys("khayyam@mail.ru");
+                driver.FindElementById("UserName").SendKeys("KhayyamMasiyev");
+                driver.FindElementById("Password").SendKeys("@Khayyam1980");
+                driver.FindElementById("ConfirmPassword").SendKeys("@Khayyam1980");
 
                 var list = driver.FindElementByClassName("dropdown-toggle");
                 list.Click();

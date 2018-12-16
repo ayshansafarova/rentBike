@@ -14,24 +14,20 @@ namespace Bikely.Controllers
     [Authorize]
     public class UsersController : Controller
     {
-        public int logCounter;
         private ApplicationDbContext context;
         private UserManager<ApplicationUser> uManager;
 
         public UsersController()
         {
-            logCounter = 0;
             context = new ApplicationDbContext();
             uManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }
 
+        //Get:
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
-                logCounter++;
-                ViewBag.Count = logCounter.ToString();
-
                 //Identity User List with LINQ
                 if (User.IsInRole("Admin"))
                 {
@@ -96,7 +92,6 @@ namespace Bikely.Controllers
             }
         }
 
-        //Get:
         public ActionResult Delete(string userId)
         {
             if (User.IsInRole("Admin"))
@@ -108,7 +103,7 @@ namespace Bikely.Controllers
                 var user = uManager.FindById(userId);
                 if(user == null)
                 {
-                    return HttpNotFound();
+                    return View("Error");
                 }
                 else
                 {
