@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Bikely.Models.Rental>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "New")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Velosipedin Idsi
+        </th>
+        @if (User.IsInRole("Owner"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Renter.UserName)
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        @{
+            if (User.IsInRole("Owner"))
+            {
+                <th>Sifarişi qəbul edirsiz?</th>
+            }
+            else
+            {
+                @Html.DisplayNameFor(model => model.isAccepted)
+            }
+        }
+        @if (User.IsInRole("Renter"))
+        {
+            <th>Velosipedin sahibi</th>
+        }
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bike.Id)
+        </td>
+        @if (User.IsInRole("Owner"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Renter.UserName)
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        @{
+            if (item.isAccepted)
+            {
+                <td>Qəbul olunub</td>
+            }
+            else
+            {
+                <td>
+                    Hələ gözləmədədir...
+                </td>
+            }
+        }
+
+        @if (User.IsInRole("Renter"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Bike.User.UserName)
+            </td>
+        }
+            <td>
+
+                @if (User.IsInRole("Owner"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { rentalId = item.Id, bikeId = item.Bike.Id });
+                    <p> | </p>
+                    @Html.ActionLink("Profiline bax", "Profile", "Users", new { userId = item.Renter.Id, roleName = "Renter" }, null);
+                    <p> | </p>
+                    @Html.ActionLink("Velosipede bax", "Index", "Bikes", new { id = item.Bike.Id });
+                }
+                else
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                }
+
+
+            </td>
+    </tr>
+}
+
+</table>

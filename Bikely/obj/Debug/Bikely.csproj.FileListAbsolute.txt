@@ -77,3 +77,6 @@ E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.edit.resources
 E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editBikes.resources
 E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editBikes2.resources
 E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editBikes3.resources
+E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.addRentals.resources
+E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editRentals.resources
+E:\Bikely\Bikely\obj\Debug\Bikely.Migrations.editt.resources

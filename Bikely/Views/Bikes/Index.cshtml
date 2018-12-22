@@ -35,41 +35,64 @@
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
-       // foreach (var cat in ViewData["categories"] as List<string>)
-        //{
-            <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priceDaily)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priceWeekly)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priceMonthly)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isActive)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.Image)*@
-                @*<img src="@Url.Content(item.Image)" />*@
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        var str = Convert.ToBase64String(item.Image);
+        var src = String.Format("data:image/png;base64,{0}", str);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priceDaily) AZN
+        </td>
+
+        @if (item.priceWeekly != null)
+        {
+            <td>@Html.DisplayFor(modelItem => item.priceWeekly) AZN</td>
+        }
+        else
+        {
+            <td> </td>
+        }
+
+        @if (item.priceMonthly != null)
+        {
+            <td>@Html.DisplayFor(modelItem => item.priceMonthly) AZN</td>
+        }
+        else
+        {
+            <td> </td>
+        }
+
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            <img class="bike-image" src="@src" />
+        </td>
+        <td>
+            @if (User.IsInRole("Owner"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+            }
+
+            @Html.ActionLink("gir", "selected", new { id = item.Id })
+
+        </td>
+    </tr>
             //}
         }
 
 </table>
+<style>
+    .bike-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>

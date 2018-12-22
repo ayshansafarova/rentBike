@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bikely.Models;
 
 namespace Bikely.Controllers
 {
     [AllowAnonymous]
 	public class HomeController : Controller
 	{
+        private ApplicationDbContext context;
+
 		public ActionResult Index()
 		{
 			return View();
@@ -28,5 +31,14 @@ namespace Bikely.Controllers
 
 			return View();
 		}
+
+        public ActionResult Search()
+        {
+            context = new ApplicationDbContext();
+            var list = context.Bikes.Where(x => x.Image != null).ToList();
+            return View(list);
+        }
+
+
 	}
 }

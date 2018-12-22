@@ -13,3 +13,9 @@ header .m-stack{
 #single-layout .btn.dropdown-toggle.btn-default {
     border: unset !important;
 }
+
+img.bike-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

@@ -173,6 +173,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,12 +206,27 @@
     <Compile Include="Migrations\201812162156086_editBikes3.Designer.cs">
       <DependentUpon>201812162156086_editBikes3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812171856331_addRentals.cs" />
+    <Compile Include="Migrations\201812171856331_addRentals.Designer.cs">
+      <DependentUpon>201812171856331_addRentals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812191957040_editRentals.cs" />
+    <Compile Include="Migrations\201812191957040_editRentals.Designer.cs">
+      <DependentUpon>201812191957040_editRentals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812200434119_editt.cs" />
+    <Compile Include="Migrations\201812200434119_editt.Designer.cs">
+      <DependentUpon>201812200434119_editt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Bike.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rental.cs" />
+    <Compile Include="Models\RentalFormViewModel.cs" />
     <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -305,6 +321,7 @@
     <Content Include="assets\app\media\img\users\user3.jpg" />
     <Content Include="assets\app\media\img\users\user4.jpg" />
     <Content Include="assets\app\media\img\users\user5.jpg" />
+    <Content Include="assets\background\css\style.css" />
     <Content Include="assets\demo\default\base\scripts.bundle.js" />
     <Content Include="assets\demo\default\base\style.bundle.css" />
     <Content Include="assets\demo\default\custom\components\base\blockui.js" />
@@ -436,6 +453,7 @@
     <Content Include="assets\vendors\base\fonts\summernote\summernote.eot" />
     <Content Include="assets\vendors\base\fonts\summernote\summernote.ttf" />
     <Content Include="assets\vendors\base\fonts\summernote\summernote.woff" />
+    <Content Include="assets\background\scss\style.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -491,6 +509,13 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Bikes\Index.cshtml" />
     <Content Include="Views\Bikes\New.cshtml" />
+    <Content Include="Views\Bikes\Edit.cshtml" />
+    <Content Include="Views\Rentals\New.cshtml" />
+    <Content Include="Views\Rentals\Index.cshtml" />
+    <Content Include="Views\Rentals\Edit.cshtml" />
+    <Content Include="Views\Bikes\Selected.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Bikes\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -524,6 +549,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812162156086_editBikes3.resx">
       <DependentUpon>201812162156086_editBikes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171856331_addRentals.resx">
+      <DependentUpon>201812171856331_addRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812191957040_editRentals.resx">
+      <DependentUpon>201812191957040_editRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812200434119_editt.resx">
+      <DependentUpon>201812200434119_editt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

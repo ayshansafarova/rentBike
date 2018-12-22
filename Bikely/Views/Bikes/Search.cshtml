@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Bikely.Models.Bike>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Axtarış</h2>
+
+<table class="table" id="search">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceDaily)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceWeekly)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceMonthly)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        var str = Convert.ToBase64String(item.Image);
+        var src = String.Format("data:image/png;base64,{0}", str);
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priceDaily) AZN
+            </td>
+
+            @if (item.priceWeekly != null)
+            {
+                <td>@Html.DisplayFor(modelItem => item.priceWeekly) AZN</td>
+            }
+            else
+            {
+                <td> </td>
+            }
+
+            @if (item.priceMonthly != null)
+            {
+                <td>@Html.DisplayFor(modelItem => item.priceMonthly) AZN</td>
+            }
+            else
+            {
+                <td> </td>
+            }
+            <td>
+                <img class="bike-image" src="@src" />
+            </td>
+            <td>
+                @Html.ActionLink("Daha çox məlumat üçün daxil ol", "Selected", new { id = item.Id })
+
+            </td>
+        </tr>
+        //}
+    }
+
+</table>
+<style>
+    .bike-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>
+    <script>
+        $(function () {
+            $('#search').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true
+            });
+        });
+    </script>
+}

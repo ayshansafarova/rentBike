@@ -11,9 +11,10 @@ namespace Bikely.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        //public string Location { get; set; }
+        //public string location { get; set; }
 
         public virtual ICollection<Bike> Bikes { get; set; }
+        public virtual ICollection<Rental> Rentals{ get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -24,21 +25,4 @@ namespace Bikely.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-
-        public DbSet<Bike> Bikes { get; set; }
-        public DbSet<Category> Categories { get; set; }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-
-        //public System.Data.Entity.DbSet<Bikely.Models.BikeFormViewModel> BikeFormViewModels { get; set; }
-    }
 }
